@@ -14,6 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub.useOSProber = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "lucy-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -109,9 +110,8 @@
     arc-theme
     arc-kde-theme
     papirus-icon-theme
-    wine
-    ntfs3g
-    usbutils
+    wineWowPackages.stable
+	usbutils
     htop
 	kate
 	etcher
@@ -120,10 +120,12 @@
 	gparted	
 	testdisk
 	appimage-run
-	virtualbox
 	linuxPackages.virtualbox
 	plasma5.sddm-kcm
+	kde-gtk-config
 	patchelf
+	gcc
+	hivex
     libsForQt512.qtstyleplugin-kvantum
     qtstyleplugin-kvantum-qt4
     nur.repos.zeratax.mangohud
@@ -147,11 +149,15 @@
 
   nixpkgs.config.allowBroken = true;
 
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "lucy" ];
+
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
+  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
