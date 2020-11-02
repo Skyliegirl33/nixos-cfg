@@ -32,7 +32,6 @@ stdenv.mkDerivation rec {
   installPhase = ''
 	install -m755 -D DefleMask $out/DefleMask
 	install -m755 -D config.ini $out/config.ini
-	#install -m755 -D backup.dmf $out/backup.dmf
 	install -m755 -D manual.pdf $out/manual.pdf
 	for D in */; do
 		mkdir $out/$D
